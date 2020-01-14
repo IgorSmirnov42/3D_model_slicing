@@ -61,9 +61,12 @@ float generate_random_angle() {
 void Vector3d::normalize()
 {
     float len = std::sqrt(x * x + y * y + z * z);
-    x /= len;
-    y /= len;
-    z /= len;
+    if (fabs(len) > 1e-7)
+    {
+        x /= len;
+        y /= len;
+        z /= len;
+    }
 }
 
 Vector3d operator+(const Vector3d &a, const Vector3d &b)
@@ -94,7 +97,9 @@ Vector3d build_normal(size_t face_id, const Figure& figure)
     return normal;
 }
 
-float distance(const Vector3d &a, const Vector3d &b)
+float distance(Vector3d a, Vector3d b)
 {
+    a.normalize();
+    b.normalize();
     return (float) sqrt(pow(a.x - b.x, 2) + pow(a.y - b.y, 2) + pow(a.z - b.z, 2));
 }

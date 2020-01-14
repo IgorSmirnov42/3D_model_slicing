@@ -33,5 +33,5 @@ Vector3d operator/(const Vector3d &a, float x);
 
 Vector3d build_normal(size_t face_id, const Figure& figure);
 
-float distance(const Vector3d &a, const Vector3d &b);
+float distance(Vector3d a, Vector3d b);
 
